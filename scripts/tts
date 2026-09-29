@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Entry point for agents: runs tts.py inside the shared Chatterbox venv, creating it on first use.
+set -euo pipefail
+DIR="$(cd "$(dirname "$0")" && pwd)"
+VENV="${CHATTERBOX_HOME:-$HOME/.local/share/chatterbox-tts}/venv"
+[[ -x "$VENV/bin/python" ]] || "$DIR/setup.sh" >&2
+export PYTORCH_ENABLE_MPS_FALLBACK=1   # a few ops lack MPS kernels
+exec "$VENV/bin/python" "$DIR/tts.py" "$@"

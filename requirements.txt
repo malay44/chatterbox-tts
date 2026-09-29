@@ -1,0 +1,23 @@
+# Dependencies of chatterbox-tts, installed separately (chatterbox itself goes in
+# with --no-deps). Upstream pins versions that the savvas-scfw npm/pip firewall
+# blocks (OSV advisories), so each is bumped to the first clean release:
+#   torch 2.6.0 -> >=2.13 (24 advisories), transformers 5.2.0 -> >=5.10 (6),
+#   diffusers 0.29.0 -> >=0.38 (trust_remote_code bypass).
+# gradio (+ flagged starlette) is dropped: only chatterbox's demo web apps use it.
+# Verified working 2026-09-25: torch 2.14.0, torchaudio 2.11.0, transformers 5.17.0,
+# diffusers 0.40.0, safetensors 0.8.0, numpy 1.26.4, Python 3.11.8, Apple MPS.
+numpy>=1.24.0,<2.0.0
+librosa==0.11.0
+soundfile
+s3tokenizer
+torch>=2.13.0
+torchaudio==2.11.0
+transformers>=5.10.0
+diffusers>=0.38.0
+safetensors>=0.5.3
+resemble-perth @ git+https://github.com/resemble-ai/Perth.git@master
+conformer==0.3.2
+spacy-pkuseg
+pykakasi==2.3.0
+pyloudnorm
+omegaconf
